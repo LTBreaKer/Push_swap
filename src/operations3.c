@@ -1,49 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   find_last.c                                        :+:      :+:    :+:   */
+/*   operations3.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aharrass <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/01 23:28:23 by aharrass          #+#    #+#             */
-/*   Updated: 2022/12/03 14:27:46 by aharrass         ###   ########.fr       */
+/*   Created: 2022/12/03 13:26:35 by aharrass          #+#    #+#             */
+/*   Updated: 2022/12/03 14:12:30 by aharrass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/push_swap.h"
 
-t_stack	*find_last(t_stack *stack)
+void	ft_rrr(t_stack **stack_a, t_stack **stack_b)
 {
-	if (!stack)
-		return (NULL);
-	while (stack->next)
-		stack = stack->next;
-	return (stack);
+	ft_rra(stack_a);
+	ft_rrb(stack_b);
+	ft_putstr_fd("rrr\n", 1);
 }
 
-int	lst_count(t_stack *stack_a)
+void	ft_rr(t_stack **stack_a, t_stack **stack_b)
 {
-	int	i;
-
-	i = 0;
-	while (stack_a)
-	{
-		i++;
-		stack_a = stack_a->next;
-	}
-	return (i);
+	ft_ra(stack_a);
+	ft_rb(stack_b);
+	ft_putstr_fd("rr\n", 1);
 }
 
-int	is_sorted(t_stack *stack_a)
+void	ft_ss(t_stack **stack_a, t_stack **stack_b)
 {
-	while (stack_a->next)
-	{
-		if (stack_a->element < stack_a->next->element)
-			stack_a = stack_a->next;
-		else
-			break ;
-	}
-	if (!stack_a->next)
-		return (1);
-	return (0);
+	ft_sa(stack_a);
+	ft_sb(stack_b);
+	ft_putstr_fd("ss\n", 1);
 }

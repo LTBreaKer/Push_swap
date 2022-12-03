@@ -6,7 +6,7 @@
 /*   By: aharrass <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 18:29:44 by aharrass          #+#    #+#             */
-/*   Updated: 2022/12/01 23:40:24 by aharrass         ###   ########.fr       */
+/*   Updated: 2022/12/03 14:23:18 by aharrass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	main(int ac, char **av)
 {
 	t_stack	*stack_a;
 	t_stack	*stack_b;
-	t_stack	*print;
+	//t_stack	*print;
 
 	if (ac == 1)
 	{
@@ -25,23 +25,21 @@ int	main(int ac, char **av)
 	}
 	stack_a = make_stack(ac, av);
 	stack_b = NULL;
-	ft_pb(&stack_b, &stack_a);
-	ft_pb(&stack_b, &stack_a);
-	ft_rb(&stack_b);
-	print = stack_a;
-	printf("stack a:\n");
-	while (print)
-	{
-		printf("%d\n", print->element);
-		print = print->next;
-	}
-	printf("-------------------\n");
-	print = stack_b;
-	printf("stack_b:\n");
-	while (print)
-	{
-		printf("%d\n", print->element);
-		print = print->next;
-	}
+	//print = stack_a;
+	// printf("stack a:\n");
+	// while (print)
+	// {
+	// 	printf("%d\n", print->element);
+	// 	print = print->next;
+	// }
+	// printf("-------------------\n");
+	// print = stack_b;
+	// printf("stack_b:\n");
+	// while (print)
+	// {
+	// 	printf("%d\n", print->element);
+	// 	print = print->next;
+	// }
+	ft_small(&stack_a);
 	clean_lst(&stack_a);
 }

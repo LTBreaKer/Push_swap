@@ -6,7 +6,7 @@
 /*   By: aharrass <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 01:48:48 by aharrass          #+#    #+#             */
-/*   Updated: 2022/12/01 21:42:48 by aharrass         ###   ########.fr       */
+/*   Updated: 2022/12/03 14:28:48 by aharrass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ t_stack	*make_stack(int ac, char **av)
 		i = ac - 1;
 	}
 	check_args(ac, av, j);
-	//stack_a = ft_lstnew(ft_atoi(av[1]));
 	stack_a = NULL;
 	help_push(i, av, &stack_a);
 	check_dup(&stack_a);
@@ -67,6 +66,7 @@ void	check_args(int ac, char **av, int j)
 
 	i = ac - 1;
 	if (j == 0)
+	{
 		while (i > 0)
 		{
 			j = 0;
@@ -74,7 +74,6 @@ void	check_args(int ac, char **av, int j)
 				j++;
 			while (av[i][j])
 			{
-				
 				if (!ft_isdigit(av[i][j]))
 				{
 					ft_putendl_fd("ERROR1", 2);
@@ -84,7 +83,9 @@ void	check_args(int ac, char **av, int j)
 			}
 			i--;
 		}
+	}
 	else
+	{
 		while (i >= 0)
 		{
 			j = 0;
@@ -92,7 +93,6 @@ void	check_args(int ac, char **av, int j)
 				j++;
 			while (av[i][j])
 			{
-				
 				if (!ft_isdigit(av[i][j]))
 				{
 					ft_putendl_fd("ERROR1", 2);
@@ -102,6 +102,7 @@ void	check_args(int ac, char **av, int j)
 			}
 			i--;
 		}
+	}
 }
 
 void	check_dup(t_stack **stack_a)

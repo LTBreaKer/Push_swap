@@ -14,7 +14,10 @@ SRCS =	./src/ft_lstadd_front.c	\
 				./src/clean_lst.c				\
 				./src/utils.c						\
 				./src/operations.c			\
+				./src/operations2.c			\
+				./src/operations3.c			\
 				./src/find_last.c				\
+				./src/tst.c							\
 
 OBJS = ${SRCS:.c=.o}
 

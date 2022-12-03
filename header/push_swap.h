@@ -6,7 +6,7 @@
 /*   By: aharrass <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 18:30:09 by aharrass          #+#    #+#             */
-/*   Updated: 2022/12/01 23:40:39 by aharrass         ###   ########.fr       */
+/*   Updated: 2022/12/03 14:21:37 by aharrass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ void			clean_lst(t_stack **stack);
 t_stack			*make_stack(int ac, char **av);
 void			help_push(int i, char **av, t_stack **a);
 t_stack			*find_last(t_stack *stack);
+int				lst_count(t_stack *stack_a);
+int				is_sorted(t_stack *stack_a);
 void			ft_sa(t_stack **stack_a);
 void			ft_sb(t_stack **stack_b);
 void			ft_ss(t_stack **stack_a, t_stack **stack_b);
@@ -40,4 +42,9 @@ void			ft_pa(t_stack **stack_a, t_stack **stack_b);
 void			ft_pb(t_stack **stack_b, t_stack **stack_a);
 void			ft_ra(t_stack **stack_a);
 void			ft_rb(t_stack **stack_b);
+void			ft_rr(t_stack **stack_a, t_stack **stack_b);
+void			ft_rra(t_stack **stack_a);
+void			ft_rrb(t_stack **stack_b);
+void			ft_rrr(t_stack **stack_a, t_stack **stack_b);
+void			ft_small(t_stack **stack_a);
 #endif
