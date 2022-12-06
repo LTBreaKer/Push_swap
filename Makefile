@@ -6,26 +6,37 @@ RM = rm -f
 
 LIBFT = ./libft
 
+LIBFT_AR = ./libft/libft.a
+
+SR_PATH = ./src/
+
+OB_PATH = ./obj/
+
 INCLUDE = -I ./header/push_swap.h
 
-SRCS =	./src/ft_lstadd_front.c	\
-				./src/ft_lstnew.c				\
-				./src/main.c						\
-				./src/clean_lst.c				\
-				./src/utils.c						\
-				./src/operations.c			\
-				./src/operations2.c			\
-				./src/operations3.c			\
-				./src/find_last.c				\
-				./src/tst.c							\
+SR =		ft_lstadd_front.c	\
+				ft_lstnew.c				\
+				main.c						\
+				clean_lst.c				\
+				utils.c						\
+				operations.c			\
+				operations2.c			\
+				operations3.c			\
+				find_last.c				\
+				tst.c							\
 
-OBJS = ${SRCS:.c=.o}
+SRCS = $(addprefix ${SR_PATH}, ${SR})
+
+OBJS = $(addprefix ${OB_PATH}, ${SR:.c=.o})
 
 all:	${NAME}
 
-${NAME}:	${OBJS} ${LIBFT}
+$(OB_PATH)%.o : ${SR_PATH}%.c
+			cc -c $< -o $@
+
+${NAME}:	${OBJS}
 			make -C ${LIBFT}
-			cc -o ${NAME} ${INCLUDE} ${OBJS} ${LIBFT}/libft.a
+			cc -o ${NAME} ${INCLUDE} ${OBJS} ${LIBFT_AR}
 
 clean:
 		make clean -C ${LIBFT}

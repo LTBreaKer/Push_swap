@@ -6,7 +6,7 @@
 #    By: aharrass <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/06 20:48:11 by aharrass          #+#    #+#              #
-#    Updated: 2022/10/24 14:55:48 by aharrass         ###   ########.fr        #
+#    Updated: 2022/12/06 11:37:27 by aharrass         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,7 +47,9 @@ SRCS	=	ft_isalpha.c		\
 				ft_putendl_fd.c	\
 				ft_putnbr_fd.c	\
 
-OBJS	=	${SRCS:.c=.o}
+OB_PATH = ../obj/
+
+OBJS	=	${addprefix ${OB_PATH}, ${SRCS:.c=.o}}
 
 CC		=	cc
 
@@ -56,6 +58,9 @@ RM		=	rm -f
 CFLAGS	=	-Wall -Wextra -Werror
 
 all:		${NAME}
+
+${OB_PATH}%.o : %.c
+			cc -c $< -o $@
 
 ${NAME}:	${OBJS}
 			ar -rcs ${NAME} ${OBJS}
