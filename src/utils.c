@@ -6,7 +6,7 @@
 /*   By: aharrass <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 01:48:48 by aharrass          #+#    #+#             */
-/*   Updated: 2022/12/03 14:28:48 by aharrass         ###   ########.fr       */
+/*   Updated: 2022/12/05 18:52:18 by aharrass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,23 @@ t_stack	*make_stack(int ac, char **av)
 	check_args(ac, av, j);
 	stack_a = NULL;
 	help_push(i, av, &stack_a);
+	if (j)
+	{
+		ft_free_av(av, j);
+	}
 	check_dup(&stack_a);
 	return (stack_a);
+}
+
+void ft_free_av(char **res, int sub_index)
+{
+	if (res[sub_index - 1])
+	{
+		while (sub_index - 1 >= 0)
+			free (res[(sub_index--) - 1]);
+		free (res);
+		return ;
+	}
 }
 
 void	help_push(int i, char **av, t_stack **a)
@@ -72,11 +87,16 @@ void	check_args(int ac, char **av, int j)
 			j = 0;
 			if (av[i][j] == '-' || av[i][j] == '+')
 				j++;
+			if (j && !av[i][j])
+			{
+				ft_putendl_fd("Error", 2);
+				exit(1);
+			}
 			while (av[i][j])
 			{
 				if (!ft_isdigit(av[i][j]))
 				{
-					ft_putendl_fd("ERROR1", 2);
+					ft_putendl_fd("Error", 2);
 					exit(1);
 				}
 				j++;
@@ -91,11 +111,17 @@ void	check_args(int ac, char **av, int j)
 			j = 0;
 			if (av[i][j] == '-' || av[i][j] == '+')
 				j++;
+			if (j && !av[i][j])
+			{
+				ft_putendl_fd("Error", 2);
+				exit(1);
+			}
 			while (av[i][j])
 			{
 				if (!ft_isdigit(av[i][j]))
 				{
-					ft_putendl_fd("ERROR1", 2);
+					ft_putendl_fd("Error", 2);
+					free (av);
 					exit(1);
 				}
 				j++;
@@ -123,7 +149,7 @@ void	check_dup(t_stack **stack_a)
 			else if ((*stack_a) && temp)
 			{
 				clean_lst(stack_a);
-				ft_putendl_fd("ERROR2", 2);
+				ft_putendl_fd("Error", 2);
 				exit(1);
 			}
 		}
@@ -136,10 +162,10 @@ t_stack	*push_to_stack(t_stack **st, long long element)
 {
 	t_stack	*next;
 
-	if (element > INT_MAX)
+	if (element > INT_MAX || element < INT_MIN)
 	{
 		clean_lst(st);
-		ft_putendl_fd("ERROR3", 2);
+		ft_putendl_fd("Error", 2);
 		exit(1);
 	}
 	next = ft_lstnew((int)element);

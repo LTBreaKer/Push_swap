@@ -18,11 +18,11 @@ void	clean_lst(t_stack **stack)
 
 	if (!*stack)
 		return ;
-	temp = (*stack)->next;
-	while (temp)
+	temp = *stack;
+	while ((*stack)->next)
 	{
-		free(*stack);
-		*stack = temp;
-		temp = (*stack)->next;
+		(*stack) = (*stack)->next;
+		free (temp);
+		temp = *stack;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: aharrass <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 02:13:56 by aharrass          #+#    #+#             */
-/*   Updated: 2022/12/03 14:11:36 by aharrass         ###   ########.fr       */
+/*   Updated: 2022/12/05 12:55:10 by aharrass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,28 +40,32 @@ void	ft_sb(t_stack **stack_b)
 
 void	ft_pa(t_stack **stack_a, t_stack **stack_b)
 {
+	t_stack	*tmp;
 	t_stack	*tmp2;
 
+	tmp = (*stack_b)->next;
 	tmp2 = (*stack_a);
 	if (!*stack_b)
 		return ;
 	(*stack_a) = (*stack_b);
-	(*stack_b)->next = tmp2;
-	(*stack_b) = (*stack_b)->next;
+	(*stack_a)->next = tmp2;
+	(*stack_b) = tmp;
 	ft_putstr_fd("pa\n", 1);
 }
 
 void	ft_pb(t_stack **stack_b, t_stack **stack_a)
 {
 	t_stack	*tmp;
+	t_stack	*tmp2;
 
 	tmp = (*stack_b);
+	tmp2 = (*stack_a)->next;
 	if (!*stack_a)
 		return ;
 	(*stack_b) = (*stack_a);
-	(*stack_a) = (*stack_a)->next;
 	(*stack_b)->next = tmp;
-	ft_putstr_fd("sb\n", 1);
+	(*stack_a) = tmp2;
+	ft_putstr_fd("pb\n", 1);
 }
 
 void	ft_ra(t_stack **stack_a)

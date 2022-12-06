@@ -6,7 +6,7 @@
 /*   By: aharrass <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 18:30:09 by aharrass          #+#    #+#             */
-/*   Updated: 2022/12/03 14:21:37 by aharrass         ###   ########.fr       */
+/*   Updated: 2022/12/05 18:52:34 by aharrass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ typedef struct st
 }				t_stack;
 
 t_stack			*ft_lstnew(int element);
+
 void			ft_lstadd_front(t_stack **lst, t_stack *new);
 void			check_args(int ac, char **av, int j);
 t_stack			*push_to_stack(t_stack **st, long long element);
@@ -46,5 +47,9 @@ void			ft_rr(t_stack **stack_a, t_stack **stack_b);
 void			ft_rra(t_stack **stack_a);
 void			ft_rrb(t_stack **stack_b);
 void			ft_rrr(t_stack **stack_a, t_stack **stack_b);
-void			ft_small(t_stack **stack_a);
+void			ft_small(t_stack **stack_a, t_stack **stack_b);
+void			ft_sort_three(t_stack **stack_a);
+int				find_smallest(t_stack *stack_a);
+int				get_index(t_stack *stack_a, int element);
+void		ft_free_av(char **res, int sub_index);
 #endif

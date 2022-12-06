@@ -6,7 +6,7 @@
 /*   By: aharrass <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 14:31:20 by aharrass          #+#    #+#             */
-/*   Updated: 2022/10/24 00:40:54 by aharrass         ###   ########.fr       */
+/*   Updated: 2022/12/05 18:54:32 by aharrass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ static void	ft_free(char **res, int sub_index)
 	if (!res[sub_index - 1])
 	{
 		while (sub_index - 1 >= 0)
-			free (res[(sub_index--) - 1]);
+			free (res[(--sub_index) - 1]);
 		free (res);
 		return ;
 	}
