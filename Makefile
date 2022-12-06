@@ -32,7 +32,7 @@ OBJS = $(addprefix ${OB_PATH}, ${SR:.c=.o})
 all:	${NAME}
 
 $(OB_PATH)%.o : ${SR_PATH}%.c
-			@mkdir -p ${dir ${OB_PATH}}
+			@mkdir -p ${OB_PATH}
 			cc -c $< -o $@
 
 ${NAME}:	${OBJS}
@@ -42,6 +42,7 @@ ${NAME}:	${OBJS}
 clean:
 		make clean -C ${LIBFT}
 		${RM} ${OBJS}
+		${RM} -r ${OB_PATH}
 
 fclean: clean
 		make fclean -C ${LIBFT}
