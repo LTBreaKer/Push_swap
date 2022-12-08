@@ -19,11 +19,13 @@ SR =		ft_lstadd_front.c	\
 				main.c						\
 				clean_lst.c				\
 				utils.c						\
+				utils2.c					\
 				operations.c			\
 				operations2.c			\
 				operations3.c			\
 				find_last.c				\
 				tst.c							\
+				quick_sort.c			\
 
 SRCS = $(addprefix ${SR_PATH}, ${SR})
 

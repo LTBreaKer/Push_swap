@@ -6,7 +6,7 @@
 /*   By: aharrass <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/03 13:19:44 by aharrass          #+#    #+#             */
-/*   Updated: 2022/12/03 14:12:02 by aharrass         ###   ########.fr       */
+/*   Updated: 2022/12/08 15:49:28 by aharrass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,9 @@ void	ft_rb(t_stack **stack_b)
 
 	tmp2 = find_last(*stack_b);
 	tmp = *stack_b;
+	(*stack_b)->prev = tmp2;
 	*stack_b = tmp->next;
+	(*stack_b)->prev = NULL;
 	tmp->next = NULL;
 	tmp2->next = tmp;
 	ft_putstr_fd("rb\n", 1);

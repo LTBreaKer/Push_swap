@@ -6,7 +6,7 @@
 /*   By: aharrass <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 01:48:48 by aharrass          #+#    #+#             */
-/*   Updated: 2022/12/06 12:02:28 by aharrass         ###   ########.fr       */
+/*   Updated: 2022/12/08 15:32:12 by aharrass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,13 +39,13 @@ t_stack	*make_stack(int ac, char **av)
 	return (stack_a);
 }
 
-void ft_free_av(char **res, int sub_index)
+void	ft_free_av(char **res, int sub_index)
 {
 	if (res[sub_index - 1])
 	{
 		while (sub_index - 1 >= 0)
-			free (res[(sub_index--) - 1]);
-		free (res);
+			free(res[(sub_index--) - 1]);
+		free(res);
 		return ;
 	}
 }
@@ -67,6 +67,7 @@ void	help_push(int i, char **av, t_stack **a)
 	}
 	while (k == 0 && i > 0)
 	{
+		
 		*a = push_to_stack(a, ft_atoi(av[i--]));
 	}
 	while (k != 0 && i >= 0)
@@ -81,94 +82,7 @@ void	check_args(int ac, char **av, int j)
 
 	i = ac - 1;
 	if (j == 0)
-	{
-		while (i > 0)
-		{
-			j = 0;
-			if (av[i][j] == '-' || av[i][j] == '+')
-				j++;
-			if (j && !av[i][j])
-			{
-				ft_putendl_fd("Error", 2);
-				exit(1);
-			}
-			while (av[i][j])
-			{
-				if (!ft_isdigit(av[i][j]))
-				{
-					ft_putendl_fd("Error", 2);
-					exit(1);
-				}
-				j++;
-			}
-			i--;
-		}
-	}
+		check_args1(ac, av, j);
 	else
-	{
-		while (i >= 0)
-		{
-			j = 0;
-			if (av[i][j] == '-' || av[i][j] == '+')
-				j++;
-			if (j && !av[i][j])
-			{
-				ft_putendl_fd("Error", 2);
-				exit(1);
-			}
-			while (av[i][j])
-			{
-				if (!ft_isdigit(av[i][j]))
-				{
-					ft_putendl_fd("Error", 2);
-					free (av);
-					exit(1);
-				}
-				j++;
-			}
-			i--;
-		}
-	}
-}
-
-void	check_dup(t_stack **stack_a)
-{
-	t_stack	*temp;
-	t_stack	*save;
-
-	save = *stack_a;
-	while ((*stack_a))
-	{
-		temp = (*stack_a)->next;
-		while (temp)
-		{
-			if ((*stack_a)->element != temp->element)
-			{
-				temp = temp->next;
-			}
-			else if ((*stack_a) && temp)
-			{
-				clean_lst(stack_a);
-				ft_putendl_fd("Error", 2);
-				exit(1);
-			}
-		}
-		(*stack_a) = (*stack_a)->next;
-	}
-	*stack_a = save;
-}
-
-t_stack	*push_to_stack(t_stack **st, long long element)
-{
-	t_stack	*next;
-
-	if (element > INT_MAX || element < INT_MIN)
-	{
-		clean_lst(st);
-		ft_putendl_fd("Error", 2);
-		exit(1);
-	}
-	next = ft_lstnew((int)element);
-	ft_lstadd_front(st, next);
-	return (*st);
+		check_args2(ac, av, j);
 }

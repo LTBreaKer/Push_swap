@@ -6,7 +6,7 @@
 /*   By: aharrass <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 19:49:45 by aharrass          #+#    #+#             */
-/*   Updated: 2022/11/29 00:53:07 by aharrass         ###   ########.fr       */
+/*   Updated: 2022/12/08 14:50:05 by aharrass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,5 +21,6 @@ t_stack	*ft_lstnew(int element)
 		return (0);
 	node->element = element;
 	node->next = NULL;
+	node->prev = NULL;
 	return (node);
 }
