@@ -6,7 +6,7 @@
 /*   By: aharrass <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 02:13:56 by aharrass          #+#    #+#             */
-/*   Updated: 2022/12/08 15:47:44 by aharrass         ###   ########.fr       */
+/*   Updated: 2022/12/08 20:00:47 by aharrass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,16 @@ void	ft_sa(t_stack **stack_a)
 	t_stack	*tmp;
 	t_stack *tmp2;
 	
+	if (!*stack_a || !(*stack_a)->next)
+		return ;
 	tmp2 = (*stack_a);
 	tmp = (*stack_a)->next->next;
 	(*stack_a)->next->prev = NULL;
 	(*stack_a)->prev = (*stack_a)->next;
-	tmp->prev = (*stack_a);
+	if (tmp)
+		tmp->prev = (*stack_a);
 	(*stack_a) = tmp2->next;
-	(*stack_a)->next = tmp->prev;
+	(*stack_a)->next = tmp2;
 	(*stack_a)->next->next = tmp;
 	ft_putstr_fd("sa\n", 1);
 }
@@ -33,13 +36,16 @@ void	ft_sb(t_stack **stack_b)
 	t_stack	*tmp;
 	t_stack	*tmp2;
 
+	if (!*stack_b || !(*stack_b)->next)
+		return ;
 	tmp2 = (*stack_b);
 	tmp = (*stack_b)->next->next;
 	(*stack_b)->next->prev = NULL;
 	(*stack_b)->prev = (*stack_b)->next;
-	tmp->prev = (*stack_b);
+	if (tmp)
+		tmp->prev = (*stack_b);
 	(*stack_b) = tmp2->next;
-	(*stack_b)->next = tmp->prev;
+	(*stack_b)->next = tmp2;
 	(*stack_b)->next->next = tmp;
 	ft_putstr_fd("sb\n", 1);
 }

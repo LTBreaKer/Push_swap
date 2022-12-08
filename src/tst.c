@@ -6,7 +6,7 @@
 /*   By: aharrass <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/03 13:40:50 by aharrass          #+#    #+#             */
-/*   Updated: 2022/12/08 14:08:26 by aharrass         ###   ########.fr       */
+/*   Updated: 2022/12/08 20:35:05 by aharrass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,11 @@ void	ft_medium(t_stack **stack_a, t_stack **stack_b)
 	t_stack	*tmp;
 	int		i;
 	int		j;
+	int		k;
+	int		l;
 
+	l = 0;
+	k = 0;
 	j = 0;
 	i = 0;
 	lst_c = lst_count(*stack_a);
@@ -87,12 +91,37 @@ void	ft_medium(t_stack **stack_a, t_stack **stack_b)
 	quick_sort(arr, 0, lst_c - 1);
 	i = lst_c / 5;
 	tmp = *stack_a;
-	while (arr[j] && j < i)
+	while (tmp)
 	{
-		if (tmp->element != arr[j])
-			j++;
-		else
-			break;
+		j = 0;
+		while (arr[j] && j < i)
+		{
+			if (tmp->element != arr[j])
+				j++;
+			else
+				break ;
+		}
+		if (arr[j] == tmp->element)
+			break ;
+		tmp = tmp->next;
+		k++;
 	}
-	
+	tmp = *stack_a;
+	while (tmp->next)
+		tmp = tmp->next;
+	while (tmp)
+	{
+		j = 0;
+		while (arr[j] && j < i)
+		{
+			if (tmp->element != arr[j])
+				j++;
+			else
+				break ;
+		}
+		if (arr[j] == tmp->element)
+			break ;
+		tmp = tmp->prev;
+		l++;
+	}
 }
