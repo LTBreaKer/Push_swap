@@ -6,7 +6,7 @@
 /*   By: aharrass <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 18:30:09 by aharrass          #+#    #+#             */
-/*   Updated: 2022/12/08 14:49:52 by aharrass         ###   ########.fr       */
+/*   Updated: 2022/12/09 12:42:04 by aharrass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ typedef struct st
 {
 	int			element;
 	struct st	*next;
-	struct st *prev;
+	struct st	*prev;
 }				t_stack;
 
 t_stack			*ft_lstnew(int element);
@@ -60,4 +60,7 @@ void			ft_medium(t_stack **stack_a, t_stack **stack_b);
 void			swap(int *x, int *y);
 void			quick_sort(int arr[], int start, int end);
 int				part(int arr[], int start, int end);
+int				find_from_start(t_stack *stack_a, int arr[], int start,
+					int end);
+int				find_from_end(t_stack *stack_a, int arr[], int start, int end);
 #endif

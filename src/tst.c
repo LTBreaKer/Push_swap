@@ -6,7 +6,7 @@
 /*   By: aharrass <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/03 13:40:50 by aharrass          #+#    #+#             */
-/*   Updated: 2022/12/08 20:35:05 by aharrass         ###   ########.fr       */
+/*   Updated: 2022/12/09 16:08:33 by aharrass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,13 +72,13 @@ void	ft_medium(t_stack **stack_a, t_stack **stack_b)
 	int		*arr;
 	t_stack	*tmp;
 	int		i;
-	int		j;
 	int		k;
 	int		l;
+	int		j;
 
+	j = 0;
 	l = 0;
 	k = 0;
-	j = 0;
 	i = 0;
 	lst_c = lst_count(*stack_a);
 	arr = malloc(sizeof(int) * lst_c);
@@ -89,39 +89,51 @@ void	ft_medium(t_stack **stack_a, t_stack **stack_b)
 		tmp = tmp->next;
 	}
 	quick_sort(arr, 0, lst_c - 1);
+	i = 0;
+	while (arr[i])
+		printf("%d ", arr[i++]);
+	printf("\n");
 	i = lst_c / 5;
-	tmp = *stack_a;
-	while (tmp)
+	while (*stack_a)
 	{
-		j = 0;
-		while (arr[j] && j < i)
+		while (*stack_a)
 		{
-			if (tmp->element != arr[j])
-				j++;
-			else
+			k = find_from_start(*stack_a, arr, j, i);
+			l = find_from_end(*stack_a, arr, j, i);
+			printf("start %d back %d\n", k, l);
+			if (k >= lst_c - i && l >= lst_c - i)
+			{
+				j += i;
+				i += lst_c / 5;
 				break ;
-		}
-		if (arr[j] == tmp->element)
-			break ;
-		tmp = tmp->next;
-		k++;
-	}
-	tmp = *stack_a;
-	while (tmp->next)
-		tmp = tmp->next;
-	while (tmp)
-	{
-		j = 0;
-		while (arr[j] && j < i)
-		{
-			if (tmp->element != arr[j])
-				j++;
+			}
+			if (k <= l)
+			{
+				while (k > 0)
+				{
+					ft_ra(stack_a);
+					k--;
+				}
+				ft_pb(stack_b, stack_a);
+			}
 			else
-				break ;
+			{
+				while (l >= 0)
+				{
+					ft_rra(stack_a);
+					l--;
+				}
+				ft_pb(stack_b, stack_a);
+			}
+			tmp = *stack_a;
+			printf("----------------\n");
+			while (tmp)
+			{
+				printf("%d\n", tmp->element);
+				tmp = tmp->next;
+			}
+			printf("----------------\n");
 		}
-		if (arr[j] == tmp->element)
-			break ;
-		tmp = tmp->prev;
-		l++;
 	}
+	//printf("progress :%d\n", (*stack_b)->element);
 }

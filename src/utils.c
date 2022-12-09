@@ -6,7 +6,7 @@
 /*   By: aharrass <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 01:48:48 by aharrass          #+#    #+#             */
-/*   Updated: 2022/12/08 15:32:12 by aharrass         ###   ########.fr       */
+/*   Updated: 2022/12/09 15:00:33 by aharrass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,6 @@ void	help_push(int i, char **av, t_stack **a)
 	}
 	while (k == 0 && i > 0)
 	{
-		
 		*a = push_to_stack(a, ft_atoi(av[i--]));
 	}
 	while (k != 0 && i >= 0)
@@ -85,4 +84,62 @@ void	check_args(int ac, char **av, int j)
 		check_args1(ac, av, j);
 	else
 		check_args2(ac, av, j);
+}
+
+int	find_from_start(t_stack *stack_a, int arr[], int start, int end)
+{
+	int	steps;
+	int	i;
+
+	i = start;
+	steps = 0;
+	while (stack_a)
+	{
+		i = start;
+		while (arr[i] && i < end)
+		{
+			if (stack_a->element != arr[i])
+				i++;
+			else
+				break ;
+		}
+		if (i == end)
+			i--;
+		if (arr[i] == stack_a->element)
+			break ;
+		stack_a = stack_a->next;
+		steps++;
+	}
+	//printf("found %d\n", stack_a->element);
+	return (steps);
+}
+
+int	find_from_end(t_stack *stack_a, int arr[], int start, int end)
+{
+	int steps;
+	int i;
+
+	i = start;
+	steps = 0;
+	while (stack_a->next)
+		stack_a = stack_a->next;
+	while (stack_a)
+	{
+		i = start;
+		while (arr[i] && i < end)
+		{
+			if (stack_a->element != arr[i])
+				i++;
+			else
+				break ;
+		}
+		if (i == end)
+			i--;
+		if (arr[i] == stack_a->element)
+			break ;
+		stack_a = stack_a->prev;
+		steps++;
+	}
+	//printf("found %d\n", stack_a->element);
+	return (steps);
 }
