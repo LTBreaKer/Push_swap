@@ -6,7 +6,7 @@
 /*   By: aharrass <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 23:28:23 by aharrass          #+#    #+#             */
-/*   Updated: 2022/12/08 15:30:42 by aharrass         ###   ########.fr       */
+/*   Updated: 2022/12/09 18:00:10 by aharrass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,24 @@ int	find_smallest(t_stack *stack_a)
 		stack_a = stack_a->next;
 		if (stack_a->element < tmp)
 			tmp = stack_a->element;
+	}
+	return (tmp);
+}
+
+int	find_biggest(t_stack *stack_b)
+{
+	int		tmp;
+	t_stack	*tmp2;
+
+	tmp2 = stack_b;
+	if (!stack_b)
+		exit(1);
+	tmp = stack_b->element;
+	while (stack_b->next)
+	{
+		stack_b = stack_b->next;
+		if (stack_b->element > tmp)
+			tmp = stack_b->element;
 	}
 	return (tmp);
 }

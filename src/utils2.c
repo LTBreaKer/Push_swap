@@ -6,7 +6,7 @@
 /*   By: aharrass <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 14:15:39 by aharrass          #+#    #+#             */
-/*   Updated: 2022/12/08 14:46:25 by aharrass         ###   ########.fr       */
+/*   Updated: 2022/12/12 20:25:25 by aharrass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,14 @@ void	check_args1(int ac, char **av, int j)
 	}
 }
 
-void	check_args2(int ac, char **av, int j)
+void	check_args2(char **av, int j)
 {
 	int	i;
 
-	i = ac - 1;
+	i = 0;
+	while (av[i])
+		i++;
+	i--;
 	while (i >= 0)
 	{
 		j = 0;
@@ -54,6 +57,7 @@ void	check_args2(int ac, char **av, int j)
 		}
 		i--;
 	}
+	ft_free_av(av);
 }
 
 void	check_dup(t_stack **stack_a)

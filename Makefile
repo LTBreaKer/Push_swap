@@ -6,6 +6,8 @@ RM = rm -f
 
 LIBFT = ./libft
 
+GNL = ./get_next_line/
+
 LIBFT_AR = ./libft/libft.a
 
 SR_PATH = ./src/
@@ -27,6 +29,29 @@ SR =		ft_lstadd_front.c	\
 				tst.c							\
 				quick_sort.c			\
 
+BONUS_SR =	checker.c 				\
+						utils.c						\
+						utils2.c					\
+						ft_lstadd_front.c	\
+						ft_lstnew.c				\
+						operations.c			\
+						operations2.c			\
+						operations3.c			\
+						find_last.c				\
+						clean_lst.c       \
+
+GNL_SR =	get_next_line_utils.c	\
+					get_next_line.c				\
+					
+
+BONUS_SRCS = $(addprefix ${SR_path}, ${BONUS_SR})
+
+BONUS_OBJS = $(addprefix ${OB_PATH}, ${BONUS_SR:.c=.o})
+
+GNL_SRCS = $(addprefix ${GNL}, ${GNL_SR})
+
+GNL_OBJS = $(addprefix ${OB_PATH}, ${GNL_SR:.c=.o})
+
 SRCS = $(addprefix ${SR_PATH}, ${SR})
 
 OBJS = $(addprefix ${OB_PATH}, ${SR:.c=.o})
@@ -40,6 +65,13 @@ $(OB_PATH)%.o : ${SR_PATH}%.c
 ${NAME}:	${OBJS}
 			make -C ${LIBFT}
 			cc -o ${NAME} ${INCLUDE} ${OBJS} ${LIBFT_AR}
+
+${GNL_OBJS} : ${GNL_SRCS}
+			cc -c $< -o $@
+
+bonus : ${BONUS_OBJS} ${GNL_OBJS}
+			make -C ${LIBFT}
+			cc  ${INCLUDE} ${BONUS_OBJS} ${GNL_OBJS} ${LIBFT_AR} -o checker
 
 clean:
 		make clean -C ${LIBFT}
