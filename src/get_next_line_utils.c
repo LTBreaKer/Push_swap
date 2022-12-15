@@ -6,11 +6,11 @@
 /*   By: aharrass <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 09:34:28 by aharrass          #+#    #+#             */
-/*   Updated: 2022/12/12 21:18:02 by aharrass         ###   ########.fr       */
+/*   Updated: 2022/12/15 15:28:13 by aharrass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "../header/get_next_line.h"
 
 char	*ft_strjoin1(char *s1, char *s2)
 {

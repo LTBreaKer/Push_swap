@@ -22,7 +22,22 @@ void	clean_lst(t_stack **stack)
 	while ((*stack)->next)
 	{
 		(*stack) = (*stack)->next;
-		free (temp);
+		free(temp);
 		temp = *stack;
 	}
+}
+
+int	get_index(t_stack *stack_a, int element)
+{
+	int	i;
+
+	i = 0;
+	while (stack_a)
+	{
+		if (stack_a->element == element)
+			return (i);
+		stack_a = stack_a->next;
+		i++;
+	}
+	return (i);
 }

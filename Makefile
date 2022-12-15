@@ -1,5 +1,7 @@
 NAME = push_swap
 
+BONUS = checker
+
 CFLAGS = -Wall -Wextra -Werror
 
 RM = rm -f
@@ -22,6 +24,7 @@ SR =		ft_lstadd_front.c	\
 				clean_lst.c				\
 				utils.c						\
 				utils2.c					\
+				utils3.c					\
 				operations.c			\
 				operations2.c			\
 				operations3.c			\
@@ -29,20 +32,20 @@ SR =		ft_lstadd_front.c	\
 				tst.c							\
 				quick_sort.c			\
 
-BONUS_SR =	checker.c 				\
-						utils.c						\
-						utils2.c					\
-						ft_lstadd_front.c	\
-						ft_lstnew.c				\
-						operations.c			\
-						operations2.c			\
-						operations3.c			\
-						find_last.c				\
-						clean_lst.c       \
-
-GNL_SR =	get_next_line_utils.c	\
-					get_next_line.c				\
-					
+BONUS_SR =	checker.c 						\
+						checker_utils.c				\
+						utils.c								\
+						utils2.c							\
+						quick_sort.c					\
+						ft_lstadd_front.c			\
+						ft_lstnew.c						\
+						checker_op.c					\
+						checker_op2.c					\
+						checker_op3.c					\
+						find_last.c						\
+						clean_lst.c       		\
+						get_next_line_utils.c	\
+						get_next_line.c				\
 
 BONUS_SRCS = $(addprefix ${SR_path}, ${BONUS_SR})
 
@@ -66,12 +69,11 @@ ${NAME}:	${OBJS}
 			make -C ${LIBFT}
 			cc -o ${NAME} ${INCLUDE} ${OBJS} ${LIBFT_AR}
 
-${GNL_OBJS} : ${GNL_SRCS}
-			cc -c $< -o $@
+bonus : ${BONUS}
 
-bonus : ${BONUS_OBJS} ${GNL_OBJS}
+${BONUS} : ${BONUS_OBJS}
 			make -C ${LIBFT}
-			cc  ${INCLUDE} ${BONUS_OBJS} ${GNL_OBJS} ${LIBFT_AR} -o checker
+			cc  ${INCLUDE} ${BONUS_OBJS} ${LIBFT_AR} -o checker
 
 clean:
 		make clean -C ${LIBFT}
@@ -81,6 +83,7 @@ clean:
 fclean: clean
 		make fclean -C ${LIBFT}
 		${RM} ${NAME}
+		${RM} ${BONUS}
 
 re:	fclean all
 

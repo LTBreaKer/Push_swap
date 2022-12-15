@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   operations.c                                       :+:      :+:    :+:   */
+/*   checker_op.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aharrass <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/30 02:13:56 by aharrass          #+#    #+#             */
-/*   Updated: 2022/12/14 17:05:36 by aharrass         ###   ########.fr       */
+/*   Created: 2022/12/15 15:40:10 by aharrass          #+#    #+#             */
+/*   Updated: 2022/12/15 15:40:59 by aharrass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ void	ft_sa(t_stack **stack_a)
 	(*stack_a) = tmp2->next;
 	(*stack_a)->next = tmp2;
 	(*stack_a)->next->next = tmp;
-	ft_putstr_fd("sa\n", 1);
 }
 
 void	ft_sb(t_stack **stack_b)
@@ -47,7 +46,6 @@ void	ft_sb(t_stack **stack_b)
 	(*stack_b) = tmp2->next;
 	(*stack_b)->next = tmp2;
 	(*stack_b)->next->next = tmp;
-	ft_putstr_fd("sb\n", 1);
 }
 
 void	ft_pa(t_stack **stack_a, t_stack **stack_b)
@@ -67,7 +65,6 @@ void	ft_pa(t_stack **stack_a, t_stack **stack_b)
 	if ((*stack_b))
 		(*stack_b)->prev = NULL;
 	(*stack_a)->prev = NULL;
-	ft_putstr_fd("pa\n", 1);
 }
 
 void	ft_pb(t_stack **stack_b, t_stack **stack_a)
@@ -87,7 +84,6 @@ void	ft_pb(t_stack **stack_b, t_stack **stack_a)
 	if ((*stack_a))
 		(*stack_a)->prev = NULL;
 	(*stack_b)->prev = NULL;
-	ft_putstr_fd("pb\n", 1);
 }
 
 void	ft_ra(t_stack **stack_a)
@@ -104,5 +100,4 @@ void	ft_ra(t_stack **stack_a)
 	(*stack_a)->prev = NULL;
 	tmp->next = NULL;
 	tmp2->next = tmp;
-	ft_putstr_fd("ra\n", 1);
 }

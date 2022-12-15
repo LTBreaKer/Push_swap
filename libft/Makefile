@@ -6,7 +6,7 @@
 #    By: aharrass <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/06 20:48:11 by aharrass          #+#    #+#              #
-#    Updated: 2022/12/06 11:37:27 by aharrass         ###   ########.fr        #
+#    Updated: 2022/12/15 22:29:01 by aharrass         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -60,6 +60,7 @@ CFLAGS	=	-Wall -Wextra -Werror
 all:		${NAME}
 
 ${OB_PATH}%.o : %.c
+			@mkdir -p ${OB_PATH}
 			cc -c $< -o $@
 
 ${NAME}:	${OBJS}

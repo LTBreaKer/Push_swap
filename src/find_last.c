@@ -6,7 +6,7 @@
 /*   By: aharrass <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 23:28:23 by aharrass          #+#    #+#             */
-/*   Updated: 2022/12/09 18:00:10 by aharrass         ###   ########.fr       */
+/*   Updated: 2022/12/14 17:04:26 by aharrass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,19 +85,4 @@ int	find_biggest(t_stack *stack_b)
 			tmp = stack_b->element;
 	}
 	return (tmp);
-}
-
-int	get_index(t_stack *stack_a, int element)
-{
-	int	i;
-
-	i = 0;
-	while (stack_a)
-	{
-		if (stack_a->element == element)
-			return (i);
-		stack_a = stack_a->next;
-		i++;
-	}
-	return (i);
 }

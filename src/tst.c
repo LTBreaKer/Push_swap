@@ -6,7 +6,7 @@
 /*   By: aharrass <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/03 13:40:50 by aharrass          #+#    #+#             */
-/*   Updated: 2022/12/14 16:20:21 by aharrass         ###   ########.fr       */
+/*   Updated: 2022/12/15 23:38:57 by aharrass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,99 +66,33 @@ void	ft_small(t_stack **stack_a, t_stack **stack_b)
 		ft_pa(stack_a, stack_b);
 }
 
-void	ft_medium(t_stack **stack_a, t_stack **stack_b)
+void	ft_medium(t_stack **stack_a, t_stack **stack_b, int n, int lst_c)
 {
-	int		lst_c;
 	int		*arr;
-	t_stack	*tmp;
 	int		i;
 	int		k;
-	int		l;
 	int		j;
-	int		offset;
 	int		ok;
-	int		n;
 
-	l = 0;
-	k = 0;
-	i = 0;
-	lst_c = lst_count(*stack_a);
 	ok = lst_c;
-	arr = malloc(sizeof(int) * lst_c);
-	tmp = *stack_a;
-	while (i < lst_c)
-	{
-		arr[i++] = tmp->element;
-		tmp = tmp->next;
-	}
-	quick_sort(arr, 0, lst_c - 1);
-	// i = 0;
-	// while (arr[i])
-	// 	printf("%d ", arr[i++]);
-	// printf("\n");
-	if (lst_c < 150)
-		n = 8;
-	else
-		n = 18;
-	offset = lst_c / n;
-	i = (lst_c - 1) / 2 + offset;
-	j = (lst_c - 1) / 2 - offset;
+	arr = make_arr(*stack_a);
+	i = (lst_c - 1) / 2 + ok / n;
+	j = (lst_c - 1) / 2 - ok / n;
 	while (*stack_a)
 	{
 		while (*stack_a)
 		{
 			k = find_from_start(*stack_a, arr, j, i);
-			// printf("start = %d, end = %d\n", j, i);
-			// printf("k = %d\n", k);
 			if (k == lst_c)
 			{
-				j -= offset;
-				if (j < 0)
-					j = 0;
-				i += offset;
-				if (i > ok - 1)
-					i = ok - 1;
+				medium_if(&j, &i, n, ok);
 				break ;
 			}
-			if (k <= lst_c / 2)
-				while (k)
-				{
-					ft_ra(stack_a);
-					k--;
-				}
-			else if (k > lst_c / 2)
-				while (lst_c - k)
-				{
-					ft_rra(stack_a);
-					k++;
-				}
-			//printf("found --> %d\n", (*stack_a)->element);
-			ft_pb(stack_b, stack_a);
-			lst_c--;
-			if ((*stack_b)->next)
-				if ((*stack_b)->element <= arr[ok / 2])
-					ft_rb(stack_b);
-		// 	tmp = *stack_a;
-		// 	printf("----------------\n");
-		// 	while (tmp)
-		// 	{
-		// 		printf("%d\n", tmp->element);
-		// 		tmp = tmp->next;
-		// 	}
-		// 	printf("----------------\n");
+			lst_c = medium_cut(k, lst_c, stack_a, stack_b);
+			medium_last(stack_b, arr, ok);
 		}
 	}
-	free(arr);
-	ft_medium_help(stack_a, stack_b);
-	// tmp = *stack_b;
-	// printf("----------------\n");
-	// while (tmp)
-	// {
-	// 	printf("%d\n", tmp->element);
-	// 	tmp = tmp->next;
-	// }
-	// printf("----------------\n");
-	//printf("progress :%d\n", (*stack_b)->element);
+	return (free(arr), ft_medium_help(stack_a, stack_b));
 }
 
 void	ft_medium_help(t_stack **stack_a, t_stack **stack_b)
@@ -173,27 +107,9 @@ void	ft_medium_help(t_stack **stack_a, t_stack **stack_b)
 		big = find_biggest(*stack_b);
 		index_big = get_index(*stack_b, big);
 		if (index_big > (lst_count(*stack_b) / 2))
-			while ((*stack_b)->element != big)
-			{
-				if ((*stack_b)->element == big - 1)
-				{
-					ft_pa(stack_a, stack_b);
-					i = 1;
-				}
-				else
-					ft_rrb(stack_b);
-			}
+			push_big(stack_a, stack_b, big, &i);
 		else if (index_big <= (lst_count(*stack_b) / 2))
-			while ((*stack_b)->element != big)
-			{
-				if ((*stack_b)->element == big - 1)
-				{
-					ft_pa(stack_a, stack_b);
-					i = 1;
-				}
-				else
-					ft_rb(stack_b);
-			}
+			push_big2(stack_a, stack_b, big, &i);
 		ft_pa(stack_a, stack_b);
 		if (i)
 			ft_sa(stack_a);
