@@ -6,7 +6,7 @@
 /*   By: aharrass <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/15 21:56:40 by aharrass          #+#    #+#             */
-/*   Updated: 2022/12/15 23:39:04 by aharrass         ###   ########.fr       */
+/*   Updated: 2022/12/16 22:08:47 by aharrass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,30 +51,38 @@ void	medium_last(t_stack **stack_b, int *arr, int ok)
 			ft_rb(stack_b);
 }
 
-void	push_big(t_stack **stack_a, t_stack **stack_b, int big, int *i)
+int	push_big(t_stack **stack_a, t_stack **stack_b, int big, int i)
 {
+	int	j;
+
+	j = 0;
 	while ((*stack_b)->element != big)
 	{
-		if ((*stack_b)->element == big - 1)
+		if ((*stack_b)->element == i)
 		{
 			ft_pa(stack_a, stack_b);
-			*i = 1;
+			j = 1;
 		}
 		else
 			ft_rrb(stack_b);
 	}
+	return (j);
 }
 
-void	push_big2(t_stack **stack_a, t_stack **stack_b, int big, int *i)
+int	push_big2(t_stack **stack_a, t_stack **stack_b, int big, int i)
 {
+	int	j;
+
+	j = 0;
 	while ((*stack_b)->element != big)
 	{
-		if ((*stack_b)->element == big - 1)
+		if ((*stack_b)->element == i)
 		{
 			ft_pa(stack_a, stack_b);
-			*i = 1;
+			j = 1;
 		}
 		else
 			ft_rb(stack_b);
 	}
+	return (j);
 }

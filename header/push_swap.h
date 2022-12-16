@@ -6,7 +6,7 @@
 /*   By: aharrass <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 18:30:09 by aharrass          #+#    #+#             */
-/*   Updated: 2022/12/15 23:51:08 by aharrass         ###   ########.fr       */
+/*   Updated: 2022/12/16 22:08:20 by aharrass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ typedef struct st
 }				t_stack;
 
 t_stack			*ft_lstnew(int element);
-
 void			ft_lstadd_front(t_stack **lst, t_stack *new);
 void			check_args2(char **av, int j);
 void			check_args_2(int ac, char **av);
@@ -64,16 +63,15 @@ int				part(int arr[], int start, int end);
 int				find_from_start(t_stack *stack_a, int arr[], int start,
 					int end);
 int				find_biggest(t_stack *stack_b);
-void			ft_medium_help(t_stack **stack_a, t_stack **stack_b);
+void			ft_medium_help(t_stack **stack_a, t_stack **stack_b, int *arr);
 int				ft_strcmp(char *s1, char *s2);
 int				*make_arr(t_stack *stack_a);
 void			medium_if(int *j, int *i, int n, int ok);
 int				medium_cut(int k, int lst_c, t_stack **stack_a,
 					t_stack **stack_b);
 void			medium_last(t_stack **stack_b, int *arr, int ok);
-void			push_big(t_stack **stack_a, t_stack **stack_b, int big, int *i);
-void			push_big2(t_stack **stack_a, t_stack **stack_b, int big,
-					int *i);
+int				push_big(t_stack **stack_a, t_stack **stack_b, int big, int i);
+int				push_big2(t_stack **stack_a, t_stack **stack_b, int big, int i);
 void			checker_help(char *tmp, t_stack **stack_a, t_stack **stack_b);
 void			exit_checker(t_stack **stack_a, t_stack **stack_b, char **tmp);
 #endif

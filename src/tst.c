@@ -6,7 +6,7 @@
 /*   By: aharrass <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/03 13:40:50 by aharrass          #+#    #+#             */
-/*   Updated: 2022/12/15 23:38:57 by aharrass         ###   ########.fr       */
+/*   Updated: 2022/12/16 23:27:54 by aharrass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,11 +68,11 @@ void	ft_small(t_stack **stack_a, t_stack **stack_b)
 
 void	ft_medium(t_stack **stack_a, t_stack **stack_b, int n, int lst_c)
 {
-	int		*arr;
-	int		i;
-	int		k;
-	int		j;
-	int		ok;
+	int	*arr;
+	int	i;
+	int	k;
+	int	j;
+	int	ok;
 
 	ok = lst_c;
 	arr = make_arr(*stack_a);
@@ -92,26 +92,29 @@ void	ft_medium(t_stack **stack_a, t_stack **stack_b, int n, int lst_c)
 			medium_last(stack_b, arr, ok);
 		}
 	}
-	return (free(arr), ft_medium_help(stack_a, stack_b));
+	return (ft_medium_help(stack_a, stack_b, arr), free(arr));
 }
 
-void	ft_medium_help(t_stack **stack_a, t_stack **stack_b)
+void	ft_medium_help(t_stack **stack_a, t_stack **stack_b, int *arr)
 {
 	int	index_big;
 	int	big;
 	int	i;
+	int	j;
 
 	while (*stack_b)
 	{
 		i = 0;
 		big = find_biggest(*stack_b);
+		while (arr[i] != big)
+			i++;
 		index_big = get_index(*stack_b, big);
 		if (index_big > (lst_count(*stack_b) / 2))
-			push_big(stack_a, stack_b, big, &i);
+			j = push_big(stack_a, stack_b, big, arr[i - 1]);
 		else if (index_big <= (lst_count(*stack_b) / 2))
-			push_big2(stack_a, stack_b, big, &i);
+			j = push_big2(stack_a, stack_b, big, arr[i - 1]);
 		ft_pa(stack_a, stack_b);
-		if (i)
+		if (j)
 			ft_sa(stack_a);
 	}
 }
